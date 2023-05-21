@@ -1,7 +1,13 @@
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Container } from 'components/App/App.styled';
-import { Movie, MoviesList, LinkMovie, MovieWrapper, Text } from './TrendingList.styled';
+import {
+  Movie,
+  MoviesList,
+  LinkMovie,
+  MovieWrapper,
+  Text,
+} from './TrendingList.styled';
 export default function TrendingList({ items }) {
   const location = useLocation();
   let count = 0;

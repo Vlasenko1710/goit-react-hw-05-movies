@@ -23,7 +23,6 @@ export const Input = styled.input`
   transition: box-shadow 250ms ease-in-out, border-color 250ms ease-in-out;
   &:focus-within {
     box-shadow: 0px 0px 5px green;
-     border-color: green;
+    border-color: green;
   }
-  `;
-  
+`;

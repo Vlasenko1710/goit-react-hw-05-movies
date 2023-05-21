@@ -1,5 +1,9 @@
 import PropTypes from 'prop-types';
-import { ContentWrapper, ImgThumb, Title } from 'pages/MovieDetails/MovieDetails.styled';
+import {
+  ContentWrapper,
+  ImgThumb,
+  Title,
+} from 'pages/MovieDetails/MovieDetails.styled';
 export default function MovieCard({ movie }) {
   const { poster_path, title, release_date, vote_average, overview, genres } =
     movie;

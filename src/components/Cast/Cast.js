@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as API from 'search/SearchApi';
 import { NoResult } from 'components/Reviews/Reviews.styled';
-import { CastList, CastPerson, CastTextContainer, CastDesr, CastName } from './Cast.styled';
+import {
+  CastList,
+  CastPerson,
+  CastTextContainer,
+  CastDesr,
+  CastName,
+} from './Cast.styled';
 export default function Cast() {
   const [cast, setCast] = useState([]);
   const { movieId } = useParams();

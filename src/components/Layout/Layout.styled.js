@@ -18,4 +18,4 @@ export const Nav = styled.nav`
   display: flex;
   gap: 30px;
   justify-content: center;
-  `;
+`;

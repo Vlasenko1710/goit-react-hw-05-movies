@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { FormWrapper, Form, Input } from './SearchMovie.styled';
+import { FormWrapper, Form, Input, Button } from './SearchMovie.styled';
 export default function SearchMovie({ title, onChange, onSubmit }) {
   return (
     <FormWrapper>
@@ -12,6 +12,7 @@ export default function SearchMovie({ title, onChange, onSubmit }) {
           onChange={onChange}
           autoFocus
         />
+        <Button type="submit">Search</Button>
       </Form>
     </FormWrapper>
   );

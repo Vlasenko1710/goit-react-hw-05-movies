@@ -26,3 +26,21 @@ export const Input = styled.input`
     border-color: green;
   }
 `;
+export const Button = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-50%, 60%);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  font-size: 16px;
+  color: #909090;
+  transition: color 250ms ease-in-out;
+  &:hover {
+    color: green;
+  }
+`;

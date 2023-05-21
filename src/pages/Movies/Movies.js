@@ -3,10 +3,12 @@ import { useSearchParams } from 'react-router-dom';
 import SearchMovie from 'components/SearchMovie';
 import TrendingList from 'components/TrendingList';
 
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 import * as API from 'search/SearchApi';
 import { NoResult } from 'components/Reviews/Reviews.styled';
-const Warn = () => {
+import { Container } from 'components/App/App.styled';
+function notifyWarn() {
   toast.warn("Sorry, we didn't find anything", {
     position: 'top-right',
     autoClose: 3000,
@@ -17,8 +19,9 @@ const Warn = () => {
     progress: undefined,
     theme: 'colored',
   });
-};
-const Error = () => {
+}
+
+function notifyError() {
   toast.error('You have not entered anything in the search', {
     position: 'top-right',
     autoClose: 3000,
@@ -29,7 +32,7 @@ const Error = () => {
     progress: undefined,
     theme: 'colored',
   });
-};
+}
 
 export default function Movies() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -42,7 +45,7 @@ export default function Movies() {
       try {
         const res = await API.searchMovieTitle(movieTitle);
         if (res.total_results === 0) {
-          Warn();
+          notifyWarn();
           return;
         }
         setMovies(res.results);
@@ -57,7 +60,7 @@ export default function Movies() {
   const onSubmit = e => {
     e.preventDefault();
     if (!title.trim()) {
-      Error();
+      notifyError();
       return;
     }
     const nextParams = title !== '' ? { title } : {};
@@ -68,14 +71,15 @@ export default function Movies() {
   };
   return (
     <main>
-      <div>
+      <Container>
         <SearchMovie title={title} onChange={onChange} onSubmit={onSubmit} />
         {movies.length > 0 ? (
           <TrendingList items={movies} />
         ) : (
           <NoResult>Please, enter your request.</NoResult>
         )}
-      </div>
+        <ToastContainer />
+      </Container>
     </main>
   );
 }

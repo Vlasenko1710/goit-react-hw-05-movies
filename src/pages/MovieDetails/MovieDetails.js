@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {Link, Outlet, useParams, useLocation } from 'react-router-dom';
+import { Outlet, useParams, useLocation } from 'react-router-dom';
 import Loading from 'components/Loading';
 import MovieCard from 'components/MovieCard/MovieCard';
 import { Suspense } from 'react';
@@ -7,6 +7,8 @@ import { Suspense } from 'react';
 // import { Link } from 'react-router-dom';
 import * as API from 'search/SearchApi';
 import { useEffect } from 'react';
+import { Container } from 'components/App/App.styled';
+import { BackLink, LinkMore, LinksWrapper } from './MovieDetails.styled';
 
 export default function MovieDetails() {
     const { movieId } = useParams();
@@ -26,78 +28,28 @@ export default function MovieDetails() {
     }, [movieId]);
      return (
         <main>
-            <div>
-                <Link to={location?.state?.from?? '/'}>
+            <Container>
+                <BackLink to={location?.state?.from?? '/'}>
                     <span>Back to Movies</span>
-                </Link>
+                </BackLink>
                 
                         <MovieCard movie={selectedMovie} />
                         <hr />
-                        <div>
-                            <Link to="cast" state={{ from:location?.state?.from?? '/'}}>
+                        <LinksWrapper>
+                            <LinkMore to="cast" state={{ from:location?.state?.from?? '/'}}>
                                 Cast
-                            </Link>
-                            <Link to="reviews" state={{ from: location?.state?.from?? '/'}}>
+                            </LinkMore>
+                            <LinkMore to="reviews" state={{ from: location?.state?.from?? '/'}}>
                                 Reviews
-                            </Link>
-                        </div>
+                            </LinkMore>
+                        </LinksWrapper>
                         <Suspense fallback={<Loading />}>
                             <Outlet />
                         </Suspense>
                     
-            </div>
+            </Container>
         </main>
     );
 
-//   const [data, setData] = useState(null);
-//   const [status, setStatus] = useState('');
 
-//   const { id } = useParams();
-
-//   const location = useLocation();
-//   const backLink = location?.state?.from ?? '/';
-
-//   useMemo(() => {
-//     const fetch = async () => {
-//       try {
-//         const res = await API.searchMovieId(id);
-//         setData(res);
-//         setStatus(res.status);
-//         return;
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     };
-//     fetch();
-//   }, [id]);
-//     return (
-//         <main>
-//             <div>
-//                 <Link to={backLink}>
-//                     <span>Back to Movies</span>
-//                 </Link>
-//                 {status === 'Released' ? (
-//                     <>
-//                         <MovieCard data={data} />
-//                         <hr />
-//                         <div>
-//                             <Link to="cast" state={{ from: backLink }}>
-//                                 Cast
-//                             </Link>
-//                             <Link to="reviews" state={{ from: backLink }}>
-//                                 Reviews
-//                             </Link>
-//                         </div>
-//                         <Suspense fallback={<Loading />}>
-//                             <Outlet />
-//                         </Suspense>
-//                     </>
-//                 ) : (
-//                     <p>
-//                         Oops, page Not Found :( Please go back and try again later...
-//                     </p>
-//                 )}
-//             </div>
-//         </main>
-//     );
  }

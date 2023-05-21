@@ -5,6 +5,7 @@ import TrendingList from 'components/TrendingList'
 
 import { toast } from 'react-toastify';
 import * as API from 'search/SearchApi';
+import { NoResult } from 'components/Reviews/Reviews.styled';
 const Warn = () => {
      toast.warn("Sorry, we didn't find anything", {
     position: 'top-right',
@@ -72,7 +73,7 @@ export default function Movies () {
                 {movies.length > 0 ? (
                     <TrendingList items = {movies}/>
                 ) : (
-                        <p>Please, enter your request.</p>
+                        <NoResult>Please, enter your request.</NoResult>
                 )}
             </div>
         </main>

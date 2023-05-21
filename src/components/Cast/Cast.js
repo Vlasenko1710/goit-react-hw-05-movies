@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as API from 'search/SearchApi';
-
+import { NoResult } from 'components/Reviews/Reviews.styled';
+import { CastList, CastPerson, CastTextContainer, CastDesr, CastName } from './Cast.styled';
 export default function Cast() {
   const [cast, setCast] = useState([]);
   const { movieId } = useParams();
@@ -20,9 +21,9 @@ export default function Cast() {
   return (
     <div>
       {cast.length ? (
-        <ul>
+        <CastList>
           {cast.map(item => (
-            <li key={item.cast_id}>
+            <CastPerson key={item.cast_id}>
               <img
                 src={
                   item.profile_path
@@ -32,22 +33,22 @@ export default function Cast() {
                 alt={item.character ? item.character : item.original_name}
                 width="150"
               />
-              <div>
-                <span>Name</span>
-                <span>{item.name ?? item.original_name ?? 'Name'}</span>
-                <span>Character</span>
-                <span>
+              <CastTextContainer>
+                <CastDesr>Name</CastDesr>
+                <CastName>{item.name ?? item.original_name ?? 'Name'}</CastName>
+                <CastDesr>Character</CastDesr>
+                <CastName>
                   {' '}
                   {item.character
                     ? item.character
                     : item.original_name ?? 'Character'}
-                </span>
-              </div>
-            </li>
+                </CastName>
+              </CastTextContainer>
+            </CastPerson>
           ))}
-        </ul>
+        </CastList>
       ) : (
-        <p>No results</p>
+        <NoResult>No results</NoResult>
       )}
     </div>
   );

@@ -34,9 +34,9 @@ p{
 ul, ol{
     margin: 0;
     padding: 0;
-    /* list-style: none; */
+    list-style: none;
 }
-.SearchForm-input {
+/* .SearchForm-input {
   display: inline-block;
   width: 100%;
   font: inherit;
@@ -49,5 +49,5 @@ ul, ol{
 .SearchForm-input::placeholder {
   font: inherit;
   font-size: 18px;
-}
+} */
 `;

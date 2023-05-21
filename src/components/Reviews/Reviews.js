@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as API from 'search/SearchApi';
+import { ReviewWrapper, ReviewList, Review, TextContainer, NoResult, Author } from './Reviews.styled';
 export default function Reviews () {
     const [reviews, setReviews] = useState([]);
     const { movieId } = useParams();
@@ -21,11 +22,11 @@ export default function Reviews () {
     }, [movieId]);
 
     return (
-        <div>
+        <ReviewWrapper>
             {reviews.length !== 0 ? (
-                <ul>
+                <ReviewList>
                     {reviews.map(item => (
-                        <li key={item.id}>
+                        <Review key={item.id}>
                             <img
                             src={
                   item.author_details.avatar_path
@@ -37,18 +38,18 @@ export default function Reviews () {
                 alt={item.author}
                 width="100"
                             />
-                            <div>
-                                <span>
+                            <TextContainer>
+                                <Author>
                                      {item.author ?? item.author_details.username ?? 'Author'}
-                                </span>
+                                </Author>
                                 <span>{item.content ?? 'No comments'}</span>
-                            </div>
-                       </li> 
+                            </TextContainer>
+                       </Review> 
                     ))}
-                </ul>
+                </ReviewList>
             ) : (
-                    <p>No result</p>
+                    <NoResult>No result</NoResult>
             )}
-        </div>
+        </ReviewWrapper>
     )
 };

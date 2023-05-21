@@ -1,16 +1,20 @@
+import { Container } from 'components/App/App.styled';
 import  Loading  from 'components/Loading';
 import { Suspense } from 'react';
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { Header, Link, Nav } from './Layout.styled';
 
 export default function Layout () {
     return (
         <>
-            <header>
-                <nav>
-                    <NavLink to="/">Home</NavLink>
-                    <NavLink to="/movies">Movies</NavLink>
-                </nav>
-            </header>
+            <Header>
+                <Container>
+                <Nav>
+                    <Link to="/">Home</Link>
+                    <Link to="/movies">Movies</Link>
+                </Nav>
+                </Container>
+            </Header>
             <Suspense fallback={<Loading />}>
                 <Outlet />
             </Suspense>

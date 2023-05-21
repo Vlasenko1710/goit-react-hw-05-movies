@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-
+import { ContentWrapper, ImgThumb, Title } from 'pages/MovieDetails/MovieDetails.styled';
 export default function MovieCard({ movie }) {
   const { poster_path, title, release_date, vote_average, overview, genres } =
     movie;
@@ -20,8 +20,8 @@ export default function MovieCard({ movie }) {
   }
 
   return (
-    <div>
-      <div>
+    <ContentWrapper>
+      <ImgThumb>
         <img
           src={posterUrl}
           alt={title}
@@ -29,11 +29,11 @@ export default function MovieCard({ movie }) {
           height="450"
           loading="lazy"
         />
-      </div>
+      </ImgThumb>
       <div>
-        <h2>
+        <Title>
           {title ?? 'Name'} ({releaseYear})
-        </h2>
+        </Title>
         <p>User Score: {userScore}</p>
         <h3>Overview</h3>
         <p>{overview}</p>
@@ -45,7 +45,7 @@ export default function MovieCard({ movie }) {
           </p>
         )}
       </div>
-    </div>
+    </ContentWrapper>
   );
 }
 
